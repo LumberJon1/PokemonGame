@@ -28,16 +28,29 @@ public class Pokemon {
 
 
 //    Constructors
-    public Pokemon(String species, String name) {
-
+    public Pokemon(String indivspecies, String indivname) {
+        name = indivname;
+        species = indivspecies;
+        System.out.println("Created new "+species+" "+name+"!");
 
     }
 
 //    Methods
+    public int setHP(int newValue) {
+        hp = newValue;
+        System.out.println("Set HP to "+newValue+".");
+        return newValue;
+    }
+
+//    TODO: Set a method that has an array of possible species to assign randomly, and randomizes starting values.
 
     public static void main(String[] args) {
 
         // Testbed for pokemon methods
+        Pokemon eevee1 = new Pokemon("Eevee", "Mr. Eve");
+
+        eevee1.setHP(300);
+        eevee1.setHP(1);
 
     }
 }
