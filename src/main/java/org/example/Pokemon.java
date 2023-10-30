@@ -1,6 +1,7 @@
 package org.example;
 
 // Resolve any imports that I might need from utils etc.
+import java.util.Random;
 
 public class Pokemon {
 
@@ -146,6 +147,27 @@ public class Pokemon {
     }
 
 //    Utility methods
+    public int attackRoll() {
+//        Combine pokemon's attack value and level with a random number to generate a returned int value
+//        Will be compared against defender's defense roll
+
+//      random value
+        Random rand = new Random();
+        int randomValue = rand.nextInt(11) + 1;
+        System.out.println("Randomly generated "+randomValue+".");
+
+//      Adjust based on pokemon level
+        randomValue /= (1.0 / level);
+        System.out.println("Adjusted attack roll by (1 / level) ("+(1.0 / level)+"). ");
+        System.out.print("Adj. value = "+randomValue+".");
+
+//      Adjust based on pokemon attack score
+        randomValue += attack;
+        System.out.println("Adjusted attack roll by attack value("+attack+".");
+        System.out.print("Adj. result = "+randomValue+".");
+
+        return randomValue;
+    }
 
 
     public void randomizeSpecies() {
@@ -161,7 +183,11 @@ public class Pokemon {
         Pokemon eevee1 = new Pokemon("Eevee", "Mr. Eve");
 
         eevee1.setHP(300);
-        eevee1.setHP(1);
+        eevee1.setLevel(7);
 
+        eevee1.attackRoll();
+        System.out.println("\n\nIncreasing attack...\n");
+        eevee1.setAttack(50);
+        eevee1.attackRoll();
     }
 }
