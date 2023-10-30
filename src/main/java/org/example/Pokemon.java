@@ -91,43 +91,33 @@ public class Pokemon {
     }
 //    Getters
     public String getName() {
-        System.out.println("Returning current value for name: "+name);
         return name;
     }
     public String getSpecies() {
-        System.out.println("Returning current value for species: "+species);
         return species;
     }
     public int getHP() {
-        System.out.println("Returning current value for HP: "+hp);
         return hp;
     }
     public int getLevel() {
-        System.out.println("Returning current value for level: "+level);
         return level;
     }
     public int getXP() {
-        System.out.println("Returning current value for XP: "+xp);
         return xp;
     }
     public int geSpeed() {
-        System.out.println("Returning current value for speed: "+speed);
         return speed;
     }
     public int getAttack() {
-        System.out.println("Returning current value for attack: "+attack);
         return attack;
     }
     public int getDefense() {
-        System.out.println("Returning current value for defense: "+defense);
         return defense;
     }
     public int getAttackSpecial() {
-        System.out.println("Returning current value for special attack: "+attackSpecial);
         return attackSpecial;
     }
     public int getDefenseSpecial() {
-        System.out.println("Returning current value for special defense: "+defenseSpecial);
         return defenseSpecial;
     }
     public String[] getTypes() {
@@ -168,6 +158,72 @@ public class Pokemon {
 
         return randomValue;
     }
+
+        public int specialAttackRoll() {
+//        Combine pokemon's special attack value and level with a random number to generate a returned int value
+//        Will be compared against defender's special efense roll
+
+//      random value
+        Random rand = new Random();
+        int randomValue = rand.nextInt(11) + 1;
+        System.out.println("Randomly generated "+randomValue+".");
+
+//      Adjust based on pokemon level
+        randomValue /= (1.0 / level);
+        System.out.println("Adjusted attack roll by (1 / level) ("+(1.0 / level)+"). ");
+        System.out.print("Adj. value = "+randomValue+".");
+
+//      Adjust based on pokemon attack score
+        randomValue += attackSpecial;
+        System.out.println("Adjusted attack roll by attack value("+attackSpecial+".");
+        System.out.print("Adj. result = "+randomValue+".");
+
+        return randomValue;
+    }
+
+        public int defenseRoll() {
+//          Combine the pokemon's defense score with speed and level and add to a randomized roll
+
+//          random value
+            Random rand = new Random();
+            int randomValue = rand.nextInt(11) + 1;
+            System.out.println("Randomly generated "+randomValue+".");
+
+//          Adjust based on level
+            randomValue /= (1.0 / level);
+            System.out.println("Adjusted defense roll by (1 / level) ("+(1.0 / level)+"). ");
+            System.out.print("Adj. value = "+randomValue+".");
+
+//          Adjust based on the average of speed and defense, then add level back in
+            int avgDefense = (speed + defense) / 2;
+            randomValue += (avgDefense + level);
+
+            System.out.println("Added avg defense.  Final score: "+randomValue+".");
+
+            return randomValue;
+        }
+
+        public int specialDefenseRoll() {
+    //          Combine the pokemon's special defense score with speed and level and add to a randomized roll
+
+    //          random value
+            Random rand = new Random();
+            int randomValue = rand.nextInt(11) + 1;
+            System.out.println("Randomly generated "+randomValue+".");
+
+    //          Adjust based on level
+            randomValue /= (1.0 / level);
+            System.out.println("Adjusted defense roll by (1 / level) ("+(1.0 / level)+"). ");
+            System.out.print("Adj. value = "+randomValue+".");
+
+    //          Adjust based on the average of speed and defense, then add level back in
+            int avgDefense = (speed + defenseSpecial) / 2;
+            randomValue += (avgDefense + level);
+
+            System.out.println("Added avg defense.  Final score: "+randomValue+".");
+
+            return randomValue;
+        }
 
 
     public void randomizeSpecies() {
