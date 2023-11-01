@@ -27,8 +27,25 @@ public class Battle {
     }
 
 //    - Take turn
+//    - - Will prompt for a list of actions eventually, but for now will only attack
+
 //    - Switch Turns
 //    - Attack
+    public int attackTarget(Pokemon attacker, Pokemon target) {
+//        Get attacker's relevant roll
+        int attackValue = attacker.attackRoll();
+
+//        Compare to defender's relevant roll
+        int defenseValue = target.defenseRoll();
+
+        if (attackValue > defenseValue) {
+            return (attackValue - defenseValue);
+        }
+        else {
+            System.out.println("\n"+target.getName()+" evaded the attack!");
+            return 0;
+        }
+    }
 //    - Check hit
 //    - Do Damage (Calls the setHP method on target and the getDamage method on attacker)
 
@@ -40,6 +57,7 @@ public class Battle {
         Battle testBattle = new Battle();
 
         testBattle.loadParticipants(eevee, pidgey);
+        testBattle.attackTarget(eevee, pidgey);
 
     }
 }
